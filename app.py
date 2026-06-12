@@ -59,7 +59,6 @@ def result():
         return "Found no results :c"
 
     res.sort(key=lambda p: p.get("rating", 0) * min(1, (p.get("userRatingCount", 0) + 2)/5.0), reverse=True)
-    print(res)
     res_html = ""
     for place in res:
         res_html += "<tr>"
