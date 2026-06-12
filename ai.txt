@@ -13,3 +13,7 @@ https://claude.ai/share/057f56c8-0738-49d0-aa41-94f9d5e9cb2d
 I used claude to help me figure how to get light rail coordinates using R
 
 https://claude.ai/share/87dd9485-08d7-4675-aa52-80f5a8f72207
+
+I used claude to diagonise depedency problems. 
+
+https://claude.ai/share/87dd9485-08d7-4675-aa52-80f5a8f72207
