@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from lightrail_locations import stops_to_form, LINE_1_STATIONS, LINE_2_STATIONS
+from include_locations import types_to_form, INCLUDED_LOCATIONS
 from slugify import slugify
 from api import get_places_from_stops, get_best_photo_url
 
@@ -15,7 +16,8 @@ app.secret_key = APP_SECRET
 def index():
     d = {
         "stops_line_1": stops_to_form(LINE_1_STATIONS),
-        "stops_line_2": stops_to_form(LINE_2_STATIONS)
+        "stops_line_2": stops_to_form(LINE_2_STATIONS),
+        "included_locations": types_to_form(),
     }
     return render_template("index.html", d=d)
 
@@ -28,12 +30,18 @@ def result():
     if request.method == "GET":
         return "Error: was expecting a POST request", 400
     stops_to_use = []
+    types_to_use = []
     for stop in LINE_1_STATIONS:
         if slugify(stop.name) in request.form:
             stops_to_use.append(stop)
     for stop in LINE_2_STATIONS:
         if slugify(stop.name) in request.form:
             stops_to_use.append(stop)
+    for t in INCLUDED_LOCATIONS:
+        if t["google_type"] in request.form:
+            types_to_use.append(t["google_type"])
+    if len(types_to_use) == 0:
+        types_to_use = None
     minute = int(request.form["minutes"])
     if minute < 1:
         minute = 1
@@ -41,7 +49,7 @@ def result():
     if query == "":
         query = None
     try:
-        res = get_places_from_stops(stops_to_use, query, minute)
+        res = get_places_from_stops(stops_to_use, query, minute, types_to_use)
     except urllib.error.URLError as err:
         return ("Error trying to retrieve data: " + str(err))
     except urllib.error.HTTPError as err:
@@ -50,7 +58,7 @@ def result():
     if len(res) == 0:
         return "Found no results :c"
 
-    res.sort(key=lambda p: p.get("rating", 0) * max(1, p.get("userRatingCount", 1)/7.0), reverse=True)
+    res.sort(key=lambda p: p.get("rating", 0) * min(1, (p.get("userRatingCount", 0) + 2)/5.0), reverse=True)
     print(res)
     res_html = ""
     for place in res:

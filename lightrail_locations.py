@@ -606,11 +606,13 @@ def stops_to_form(stops):
     # https://stackoverflow.com/questions/5574042/string-slugification-in-python
     for stop in stops:
         # https://stackoverflow.com/questions/24322599/why-cannot-change-checkbox-color-whatever-i-do accent color
+        res += "<div class=\"form-check\">"
         res += f"<input style=\"appearance: auto; accent-color: oklch(0.65 0.1 270)\"class=\"form-check-input\" name=\"{slugify(stop.name)}\" type=\"checkbox\" id=\"{slugify(stop.name)}\">"
         res += f"<label class=\"form-check-label\" for=\"{slugify(stop.name)}\">"
         res += stop.name
         res += "</label>"
         res += "<br>"
+        res += "</div>"
     return res
 
             

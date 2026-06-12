@@ -13,10 +13,10 @@ NEARBY_SEARCH_URL = "https://places.googleapis.com/v1/places:searchNearby"
 TEXT_SEARCH_URL = "https://places.googleapis.com/v1/places:searchText"
 
 
-def get_places_from_stop(stop, query=None, minutes=10):
+def get_places_from_stop(stop, query=None, minutes=10, included_types=None):
     # https://www.medicalnewstoday.com/articles/average-walking-speed#average-speed-by-age
     radius = 57 * minutes
-    body = {"maxResultCount": COUNT, "locationRestriction": {}}
+    body = {"maxResultCount": COUNT}
     if query:
         body["textQuery"] = query
         body["locationRestriction"] = to_square(stop.coord, radius)
@@ -27,6 +27,8 @@ def get_places_from_stop(stop, query=None, minutes=10):
                 "radius": radius,
             }
         }
+    if included_types:
+        body["includedTypes"] = included_types
 
     encoded_body = json.dumps(body).encode()
     if query:
@@ -48,7 +50,7 @@ def get_places_from_stop(stop, query=None, minutes=10):
                 "User-Agent": "Mozilla/5.0",
                 "Content-Type": "application/json",
                 "X-Goog-Api-Key": GOOGLE_MAPS_PLATFORM_KEY,
-                "X-Goog-FieldMask": "places.displayName,places.priceLevel,places.rating,places.websiteUri,places.userRatingCount,places.photos",
+                "X-Goog-FieldMask": "places.displayName,places.priceLevel,places.rating,places.websiteUri,places.userRatingCount,places.photos,places.googleMapsUri",
             },
             data=encoded_body,
             method="POST",
@@ -62,10 +64,10 @@ def get_places_from_stop(stop, query=None, minutes=10):
         None
 
 
-def get_places_from_stops(stops, query=None, minutes=10):
+def get_places_from_stops(stops, query=None, minutes=10, includedTypes=None):
     res = []
     for stop in stops:
-        inner_res = get_places_from_stop(stop, query, minutes)
+        inner_res = get_places_from_stop(stop, query, minutes, includedTypes)
         if inner_res is not None:
             for pl in inner_res["places"]:
                 res.append(pl)
