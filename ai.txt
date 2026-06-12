@@ -1,1 +1,15 @@
-blah blah
+I used claude to create LINE_2_STATIONS to be like LINE_1_STATIONS, debug nested columns, review a sorting formula, find a configuration bug, and how to python anywhere
+
+https://claude.ai/share/fef44c05-40e7-43d7-947f-7acf8a0dbed2
+
+I used to claude to figure out how to get()
+
+https://claude.ai/share/200594e4-ecec-4435-b120-e69d5598a695
+
+I used claude to debug weird outputs, figure out an issue with API, and bugs with relating of my indents
+
+https://claude.ai/share/057f56c8-0738-49d0-aa41-94f9d5e9cb2d
+
+I used claude to help me figure how to get light rail coordinates using R
+
+https://claude.ai/share/87dd9485-08d7-4675-aa52-80f5a8f72207
