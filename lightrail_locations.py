@@ -326,6 +326,22 @@ LINE_1_STATIONS = [
     ),
     LightRailStation(
         coord=Coord(
+            long=-122.3228895,
+            lat=47.764088,
+        ),
+        name="Shoreline North/185th",
+        url="https://www.soundtransit.org/ride-with-us/stops-stations/shoreline-north-185th-station",
+    ),
+    LightRailStation(
+        coord=Coord(
+            long=-122.325243,
+            lat=47.736126,
+        ),
+        name="Shoreline South/148th",
+        url="https://www.soundtransit.org/ride-with-us/stops-stations/shoreline-south-148th-station",
+    ),
+    LightRailStation(
+        coord=Coord(
             long=-122.328282,
             lat=47.703038,
         ),
