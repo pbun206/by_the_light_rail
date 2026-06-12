@@ -7,8 +7,11 @@ import json
 
 COUNT = 1
 NEARBY_SEARCH_URL = "https://places.googleapis.com/v1/places:searchNearby"
+TEXT_SEARCH_URL = "https://places.googleapis.com/v1/places:searchText"
 
-def get_places_from_stop(stop):
+def get_places_from_stop(stop, query=None, minutes=10):
+    # https://www.medicalnewstoday.com/articles/average-walking-speed#average-speed-by-age
+    radius = 57 * minutes
     body = {
         "includedTypes": ["restaurant"],
         "maxResultCount": COUNT,
@@ -18,22 +21,36 @@ def get_places_from_stop(stop):
                     "latitude": stop.coord.lat,
                     "longitude": stop.coord.long
                 },
-                "radius": 3000.0
+                "radius": radius
             }
         }
     }
     encoded_body = json.dumps(body).encode()
-    req = urllib.request.Request(
-        url = NEARBY_SEARCH_URL,
-        headers={
-            "User-Agent": "Mozilla/5.0",
-            "Content-Type": "application/json",
-            "X-Goog-Api-Key": GOOGLE_MAPS_PLATFORM_KEY,
-            "X-Goog-FieldMask":"places.displayName,places.priceLevel,places.rating,places.websiteUri,places.userRatingCount,places.photos"
-        },
-        data=encoded_body,
-        method='POST'
-    )
+    if query:
+        body.add("textQuery", query)
+        req = urllib.request.Request(
+            url = TEXT_SEARCH_URL,
+            headers={
+                "User-Agent": "Mozilla/5.0",
+                "Content-Type": "application/json",
+                "X-Goog-Api-Key": GOOGLE_MAPS_PLATFORM_KEY,
+                "X-Goog-FieldMask":"places.displayName,places.priceLevel,places.rating,places.websiteUri,places.userRatingCount,places.photos"
+            },
+            data=encoded_body,
+            method='POST'
+        )
+    else:
+        req = urllib.request.Request(
+                url = NEARBY_SEARCH_URL,
+                headers={
+                    "User-Agent": "Mozilla/5.0",
+                    "Content-Type": "application/json",
+                    "X-Goog-Api-Key": GOOGLE_MAPS_PLATFORM_KEY,
+                    "X-Goog-FieldMask":"places.displayName,places.priceLevel,places.rating,places.websiteUri,places.userRatingCount,places.photos"
+                },
+                data=encoded_body,
+                method='POST'
+            )
     try:
         response = json.loads(urllib.request.urlopen(req).read())
         for r in response["places"]:
