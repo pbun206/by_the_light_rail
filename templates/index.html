@@ -3,7 +3,7 @@
 Index
 {% endblock %}
 {% block content %}
-<form action="/results">
+<form action="/results" method="post">
   <div class="container">
     <div class="row">
       <div class="col">
@@ -11,47 +11,53 @@ Index
           Pick a station to search! <span style="color:oklch(0.6 0.25 30)">*</span>
         </p>
         <div class="form-check my-3">
-          {{ d["stops"] | safe }}
-        </div>
-      </div>
-      <div class="col">
-        <div class="my-3">
-          <label for="minutes">What is your maximum walking time? (default 10)</label><br>
-          <input type="number" id="minutes" name="minutes" value=10>
-        </div>
-        <div class="my-3">
-          <label for="query">Do you have a specific search query? (optional)</label><br>
-          <input type="text" id="query" name="query">
-        </div>
-        <div class="my-3">
-          <span>Price range?</span>
-          <br>
-          <style>
-            .btn-secondary {
-              background-color: white;
-              border-color: oklch(0.5, 0.01 270);
-              color: black;
-            }
-          </style>
-          <div class="btn-group" role="group">
-            <input type="radio" class="btn-check" name="price" id="price-any" autocomplete="off" checked>
-            <label class="btn btn-secondary price-any" for="price-any">Any</label>
-            <input type="radio" class="btn-check" name="price" id="price-1" autocomplete="off">
-            <label class="btn btn-secondary price-1" for="price-1">$</label>
-            <input type="radio" class="btn-check" name="price" id="price-2" autocomplete="off">
-            <label class="btn btn-secondary price-2" for="price-2">$$</label>
-            <input type="radio" class="btn-check" name="price" id="price-3" autocomplete="off">
-            <label class="btn btn-secondary price-3" for="price-3">$$$$</label>
-            <input type="radio" class="btn-check" name="price" id="price-4" autocomplete="off">
-            <label class="btn btn-secondary price-4" for="price-4">$$$$</label>
+          <div class="row">
+            <div class="col">
+              {{ d["stops_line_1"] | safe }}
+            </div>
+            <div class="col">
+              {{ d["stops_line_2"] | safe }}
+            </div>
           </div>
         </div>
-        <div class="my-3">
-          <input class="btn"
-            style="background-color: oklch(0.5 0.1 270); border-color: oklch(0.65 0.1 270); color:white" type="Submit"
-            value="Confirm Search">
+        <div class="col">
+          <div class="my-3">
+            <label for="minutes">What is your maximum walking time? (default 10)</label><br>
+            <input type="number" id="minutes" name="minutes" value=10>
+          </div>
+          <div class="my-3">
+            <label for="query">Do you have a specific search query? (optional)</label><br>
+            <input type="text" id="query" name="query">
+          </div>
+          <!-- <div class="my-3"> -->
+          <!-- <span>Price range?</span> -->
+          <!-- <br> -->
+          <!-- <style> -->
+          <!-- .btn-secondary { -->
+          <!-- background-color: white; -->
+          <!-- border-color: oklch(0.5, 0.01 270); -->
+          <!-- color: black; -->
+          <!-- } -->
+          <!-- </style> -->
+          <!-- <div class="btn-group" role="group"> -->
+          <!-- <input type="radio" class="btn-check" name="price" id="price-any" autocomplete="off" checked> -->
+          <!-- <label class="btn btn-secondary price-any" for="price-any">Any</label> -->
+          <!-- <input type="radio" class="btn-check" name="price" id="price-1" autocomplete="off"> -->
+          <!-- <label class="btn btn-secondary price-1" for="price-1">$</label> -->
+          <!-- <input type="radio" class="btn-check" name="price" id="price-2" autocomplete="off"> -->
+          <!-- <label class="btn btn-secondary price-2" for="price-2">$$</label> -->
+          <!-- <input type="radio" class="btn-check" name="price" id="price-3" autocomplete="off"> -->
+          <!-- <label class="btn btn-secondary price-3" for="price-3">$$$$</label> -->
+          <!-- <input type="radio" class="btn-check" name="price" id="price-4" autocomplete="off"> -->
+          <!-- <label class="btn btn-secondary price-4" for="price-4">$$$$</label> -->
+          <!-- </div> -->
+          <!-- </div> -->
+          <div class="my-3">
+            <input class="btn"
+              style="background-color: oklch(0.5 0.1 270); border-color: oklch(0.65 0.1 270); color:white" type="Submit"
+              value="Confirm Search">
+          </div>
         </div>
       </div>
-    </div>
 </form>
 {% endblock %}

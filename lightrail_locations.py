@@ -502,6 +502,105 @@ LINE_1_STATIONS = [
     ),
 ]
 
+LINE_2_STATIONS = [
+    LightRailStation(
+        coord=Coord(
+            long=-122.118432,
+            lat=47.6716333333333,
+        ),
+        name="Downtown Redmond",
+        url="https://www.soundtransit.org/ride-with-us/stops-stations/downtown-redmond-station",
+    ),
+    LightRailStation(
+        coord=Coord(
+            long=-122.109772,
+            lat=47.66727,
+        ),
+        name="Marymoor Village",
+        url="https://www.soundtransit.org/ride-with-us/stops-stations/marymoor-village-station",
+    ),
+    LightRailStation(
+        coord=Coord(
+            long=-122.133619,
+            lat=47.6448216666667,
+        ),
+        name="Redmond Technology",
+        url="https://www.soundtransit.org/ride-with-us/stops-stations/redmond-technology-station",
+    ),
+    LightRailStation(
+        coord=Coord(
+            long=-122.1387985,
+            lat=47.6363865,
+        ),
+        name="Overlake Village",
+        url="https://www.soundtransit.org/ride-with-us/stops-stations/overlake-village-station",
+    ),
+    LightRailStation(
+        coord=Coord(
+            long=-122.165794,
+            lat=47.6244495,
+        ),
+        name="BelRed",
+        url="https://www.soundtransit.org/ride-with-us/stops-stations/belred-station",
+    ),
+    LightRailStation(
+        coord=Coord(
+            long=-122.17857,
+            lat=47.623774,
+        ),
+        name="Spring District",
+        url="https://www.soundtransit.org/ride-with-us/stops-stations/spring-district-station",
+    ),
+    LightRailStation(
+        coord=Coord(
+            long=-122.1837465,
+            lat=47.618069,
+        ),
+        name="Wilburton",
+        url="https://www.soundtransit.org/ride-with-us/stops-stations/wilburton-station",
+    ),
+    LightRailStation(
+        coord=Coord(
+            long=-122.191917,
+            lat=47.615234,
+        ),
+        name="Bellevue Downtown",
+        url="https://www.soundtransit.org/ride-with-us/stops-stations/bellevue-downtown-station",
+    ),
+    LightRailStation(
+        coord=Coord(
+            long=-122.1911505,
+            lat=47.608055,
+        ),
+        name="East Main",
+        url="https://www.soundtransit.org/ride-with-us/stops-stations/east-main-station",
+    ),
+    LightRailStation(
+        coord=Coord(
+            long=-122.190400333333,
+            lat=47.586566,
+        ),
+        name="South Bellevue",
+        url="https://www.soundtransit.org/ride-with-us/stops-stations/south-bellevue-station",
+    ),
+    LightRailStation(
+        coord=Coord(
+            long=-122.2332615,
+            lat=47.588208,
+        ),
+        name="Mercer Island",
+        url="https://www.soundtransit.org/ride-with-us/stops-stations/mercer-island-station",
+    ),
+    LightRailStation(
+        coord=Coord(
+            long=-122.304296,
+            lat=47.590296,
+        ),
+        name="Judkins Park",
+        url="https://www.soundtransit.org/ride-with-us/stops-stations/judkins-park-station",
+    ),
+]
+
 def stops_to_form(stops):
     res = ""
     # https://stackoverflow.com/questions/5574042/string-slugification-in-python
